@@ -102,4 +102,25 @@ public class StudentRepositoryTest {
 
         System.out.println("firstName = " + firstName);
     }
+
+    @Test
+    public void printStudentByEmailAddressNative() {
+        Student student = studentRepository.getStudentByEmailAddressNative("john.doe@domain");
+
+        System.out.println("student = " + student);
+    }
+
+    @Test
+    public void printStudentByEmailAddressNativeNamedParam() {
+        Student student = studentRepository.getStudentByEmailAddressNativeNamedParam("john.doe@domain");
+
+        System.out.println("student = " + student);
+    }
+
+    @Test
+    public void updateStudentNameByEmailIdTest() {
+        int updateCount = studentRepository.updateStudentNameByEmailId("john.doe@domain", "John");
+
+        System.out.println("updateCount = " + updateCount);
+    }
 }
