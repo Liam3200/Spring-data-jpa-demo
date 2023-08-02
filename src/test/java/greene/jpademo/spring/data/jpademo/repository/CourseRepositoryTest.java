@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import greene.jpademo.spring.data.jpademo.entity.Course;
+import greene.jpademo.spring.data.jpademo.entity.Teacher;
 
 public class CourseRepositoryTest {
     @Autowired
@@ -21,5 +22,14 @@ public class CourseRepositoryTest {
     public void printAllCourses() {
         List<Course> courses = courseRepository.findAll();
         System.out.println(courses);
+    }
+
+    @Test
+    public void saveCourseWithTeacher() {
+        Teacher teacher = Teacher.builder().firstName("Cathy").lastName("Smith").build();
+        Course course = Course.builder().title("Python")
+            .teacher(teacher)
+            .credit(4).build();
+        courseRepository.save(course);
     }
 }

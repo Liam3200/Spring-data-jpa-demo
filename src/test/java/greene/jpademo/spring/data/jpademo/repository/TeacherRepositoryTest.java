@@ -19,7 +19,8 @@ public class TeacherRepositoryTest {
         Course courseDBA = Course.builder().title("DBA").credit(4).build();
         Course courseDBMS = Course.builder().title("DBMS").credit(6).build();
         Teacher teacher = Teacher.builder().firstName("John").lastName("Smith")
-            .courses(List.of(courseDBA,courseDBMS)).build();
+            // .courses(List.of(courseDBA,courseDBMS))
+            .build();
         teacherRepository.save(teacher);
     }
 
