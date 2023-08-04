@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import greene.jpademo.spring.data.jpademo.entity.Course;
+import greene.jpademo.spring.data.jpademo.entity.Student;
 import greene.jpademo.spring.data.jpademo.entity.Teacher;
 
 @SpringBootTest
@@ -68,5 +69,16 @@ public class CourseRepositoryTest {
         Pageable firstPageTenRecords = PageRequest.of(0, 10);
         List<Course> courses = courseRepository.findByTitleContaining("D", firstPageTenRecords).getContent();
         System.out.println("courses: " + courses);
+    }
+
+    @Test
+    public void saveCourseWithStudentAndTeacher() {
+        Teacher teacher = Teacher.builder().firstName("Cathy").lastName("Smith").build();
+        Student student = Student.builder().firstName("Jack").lastName("Smith").emailId("jd@gmail.com").build();
+        Course course = Course.builder().title("C")
+            .teacher(teacher)
+            .credit(4).build();
+        course.addStudent(student);
+        courseRepository.save(course);
     }
 }

@@ -1,6 +1,7 @@
 package greene.jpademo.spring.data.jpademo.entity;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -49,7 +50,9 @@ public class Course {
     )
     private Teacher teacher;
 
-    @ManyToMany
+    @ManyToMany(
+        cascade = CascadeType.ALL
+    )
     @JoinTable(
         name = "student_course_map",
         joinColumns = @JoinColumn(
@@ -63,4 +66,11 @@ public class Course {
         
     )
     private List<Student> students;
+
+    public void addStudent(Student student) {
+        if (students == null) {
+            students = new ArrayList<>();
+        }
+        students.add(student);
+    }
 }
